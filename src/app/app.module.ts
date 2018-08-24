@@ -41,7 +41,9 @@ export function getAuthHttp(http) {
     HttpModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'admin', component: AdminComponent, canActivate: [AdminAuthGuard] },
+      { path: 'admin', 
+        component: AdminComponent, 
+        canActivate: [AuthGuard, AdminAuthGuard ] },
       { path: 'login', component: LoginComponent },
       { path: 'no-access', component: NoAccessComponent }
     ])
@@ -53,6 +55,7 @@ export function getAuthHttp(http) {
     AuthGuard,
     AdminAuthGuard,
     AuthHttp,
+    
     {
       provide: AuthHttp,
       useFactory: getAuthHttp,
